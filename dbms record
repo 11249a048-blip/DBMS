@@ -1,0 +1,335 @@
+
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Jul 21 08:23:43 2026
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: A048@db2021
+Enter password:
+
+Connected to:
+Oracle Database 11g Release 11.2.0.1.0 - Production
+
+SQL> create table employee (
+  2  empid,
+  3  empname,
+  4  dep,
+  5  gender,
+  6  age);
+empid,
+*
+ERROR at line 2:
+ORA-02263: need to specify the datatype for this column
+
+
+SQL>  create table employee (
+  2    2  empid,
+  3    3  empname,
+  4    4  dep,
+  5    5  gender,
+  6    5  gender,
+  7  \
+  8  );
+  2  empid,
+  *
+ERROR at line 2:
+ORA-00904: : invalid identifier
+
+
+SQL> create table employee (
+  2    3  empname,);
+  3  empname,)
+  *
+ERROR at line 2:
+ORA-00904: : invalid identifier
+
+
+SQL> create table employee (
+  2  empno number(4),
+  3  empname varchar2(15),
+  4  grnder varchar2(5),
+  5  deptno number(2));
+
+Table created.
+
+SQL> desc employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER(4)
+ EMPNAME                                            VARCHAR2(15)
+ GRNDER                                             VARCHAR2(5)
+ DEPTNO                                             NUMBER(2)
+
+SQL> create table employee1 as selected * from employee;
+create table employee1 as selected * from employee
+                          *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> create table employee1 as selected * from employee
+  2  desc employee
+  3  ;
+create table employee1 as selected * from employee
+                          *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> create table employee1 as select * from employee;
+
+Table created.
+
+SQL> desc employee1
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER(4)
+ EMPNAME                                            VARCHAR2(15)
+ GRNDER                                             VARCHAR2(5)
+ DEPTNO                                             NUMBER(2)
+
+SQL> insert into employee values (12,'Abhi','F',123);
+insert into employee values (12,'Abhi','F',123)
+                                           *
+ERROR at line 1:
+ORA-01438: value larger than specified precision allowed for this column
+
+
+SQL> insert into employee values (12,'Abhi','F',1);
+
+1 row created.
+
+SQL> insert into employee values (12,'Aira','F',34);
+
+1 row created.
+
+SQL> insert into employee values (12,'isha','F',10);
+
+1 row created.
+
+SQL> insert into employee values (2,'anhan','M',22);
+
+1 row created.
+
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER(4)
+ EMPNAME                                            VARCHAR2(15)
+ GRNDER                                             VARCHAR2(5)
+ DEPTNO                                             NUMBER(2)
+
+SQL> select * from employee;
+
+     EMPNO EMPNAME         GRNDE     DEPTNO
+---------- --------------- ----- ----------
+        12 Abhi            F              1
+        12 Aira            F             34
+        12 isha            F             10
+         2 anhan           M             22
+
+SQL> create table student (
+  2  studentid varchar2(15),
+  3  student rollno number(5),
+  4  studentname char(12),
+  5  marks number(3));
+student rollno number(5),
+               *
+ERROR at line 3:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table student (
+  2  studentid varchar2(15),
+  3  student rollno Number(4),
+  4  studentname char(12),
+  5  marks number(3));
+student rollno Number(4),
+               *
+ERROR at line 3:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table student (
+  2  studentname char(12),
+  3  studentrollno Number(5),
+  4  marks number(3));
+
+Table created.
+
+SQL> select * student;
+select * student
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select * from student;
+
+no rows selected
+
+SQL> desc student
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENTNAME                                        CHAR(12)
+ STUDENTROLLNO                                      NUMBER(5)
+ MARKS                                              NUMBER(3)
+
+SQL> insert into student values ('abhi',1,78);
+
+1 row created.
+
+SQL> insert into student values ('anu',2,99);
+
+1 row created.
+
+SQL> insert into student values ('arav',3,45);
+
+1 row created.
+
+SQL> select * from student;
+
+STUDENTNAME  STUDENTROLLNO      MARKS
+------------ ------------- ----------
+abhi                     1         78
+anu                      2         99
+arav                     3         45
+
+SQL> create table student as select * from student1
+  2  ;
+create table student as select * from student1
+                                      *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> create table student1 as select * from student;
+
+Table created.
+
+SQL> insert into student1 select * from student;
+
+3 rows created.
+
+SQL> desc student1
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENTNAME                                        CHAR(12)
+ STUDENTROLLNO                                      NUMBER(5)
+ MARKS                                              NUMBER(3)
+
+SQL> select * from student 1;
+select * from student 1
+                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select * from student1;
+
+STUDENTNAME  STUDENTROLLNO      MARKS
+------------ ------------- ----------
+abhi                     1         78
+anu                      2         99
+arav                     3         45
+abhi                     1         78
+anu                      2         99
+arav                     3         45
+
+6 rows selected.
+
+SQL> update student set marks= 66 where studentrollno = 3;
+
+1 row updated.
+
+SQL> select * from student 1;
+select * from student 1
+                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select * from student1;
+
+STUDENTNAME  STUDENTROLLNO      MARKS
+------------ ------------- ----------
+abhi                     1         78
+anu                      2         99
+arav                     3         45
+abhi                     1         78
+anu                      2         99
+arav                     3         45
+
+6 rows selected.
+
+SQL> update student set marks= 66 where studentrollno = 3;
+
+1 row updated.
+
+SQL> select * from student1;
+
+STUDENTNAME  STUDENTROLLNO      MARKS
+------------ ------------- ----------
+abhi                     1         78
+anu                      2         99
+arav                     3         45
+abhi                     1         78
+anu                      2         99
+arav                     3         45
+
+6 rows selected.
+
+SQL> update student set marks= 66 ;
+
+3 rows updated.
+
+SQL>
+SQL> select * from student1;
+
+STUDENTNAME  STUDENTROLLNO      MARKS
+------------ ------------- ----------
+abhi                     1         78
+anu                      2         99
+arav                     3         45
+abhi                     1         78
+anu                      2         99
+arav                     3         45
+
+6 rows selected.
+
+SQL> select * from student;
+
+STUDENTNAME  STUDENTROLLNO      MARKS
+------------ ------------- ----------
+abhi                     1         66
+anu                      2         66
+arav                     3         66
+
+SQL> update student set marks= 66 where studentrollno = 3;
+
+1 row updated.
+
+SQL> select * from student;
+
+STUDENTNAME  STUDENTROLLNO      MARKS
+------------ ------------- ----------
+abhi                     1         66
+anu                      2         66
+arav                     3         66
+
+SQL> update student set marks= 100;
+
+3 rows updated.
+
+SQL> update student set marks= 66 where studentrollno = 3;
+
+1 row updated.
+
+SQL> select * from student;
+
+STUDENTNAME  STUDENTROLLNO      MARKS
+------------ ------------- ----------
+abhi                     1        100
+anu                      2        100
+arav                     3         66
+
+SQL>
