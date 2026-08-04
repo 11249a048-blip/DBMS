@@ -1,0 +1,190 @@
+
+SQL> CREATE TABLE course (
+  2      name VARCHAR2(50) PRIMARY KEY,
+  3      course VARCHAR2(50)
+  4
+SQL> ;
+  1  CREATE TABLE course (
+  2      name VARCHAR2(50) PRIMARY KEY,
+  3*     course VARCHAR2(50)
+SQL> CREATE TABLE course (
+  2      course_id NUMBER(5) PRIMARY KEY,
+  3      name VARCHAR2(50),
+  4      course_name VARCHAR2(50)
+  5  );
+
+Table created.
+
+SQL> desc course;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ COURSE_ID                                 NOT NULL NUMBER(5)
+ NAME                                               VARCHAR2(50)
+ COURSE_NAME                                        VARCHAR2(50)
+
+SQL> drop table student;
+
+Table dropped.
+
+SQL> CREATE TABLE student(
+  2  STUDENT_ID INT PRIMARY KEY,
+  3  STUDENTNAME VARCHAR2(20) NOT NULL,
+  4  ;
+
+*
+ERROR at line 4:
+ORA-00904: : invalid identifier
+
+
+SQL> CREATE TABLE Student (
+  2      Student_ID NUMBER(5) PRIMARY KEY,
+  3      Student_Name VARCHAR2(50) NOT NULL,
+  4      Gender CHAR(1) CHECK (Gender IN ('M', 'F')),
+  5      Age NUMBER(2) CHECK (Age >= 18),
+  6      Course VARCHAR2(30) NOT NULL,
+  7      Email VARCHAR2(50) UNIQUE,
+  8      Marks NUMBER(3) CHECK (Marks BETWEEN 0 AND 100)
+  9  );
+
+Table created.
+
+SQL> DESC student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                NOT NULL NUMBER(5)
+ STUDENT_NAME                              NOT NULL VARCHAR2(50)
+ GENDER                                             CHAR(1)
+ AGE                                                NUMBER(2)
+ COURSE                                    NOT NULL VARCHAR2(30)
+ EMAIL                                              VARCHAR2(50)
+ MARKS                                              NUMBER(3)
+
+SQL> desc student
+ERROR:
+ORA-12571: TNS:packet writer failure
+
+
+SQL> desc student;
+ERROR:
+ORA-03114: not connected to ORACLE
+Process ID: 5664
+Session ID: 97 Serial number: 252
+
+
+SQL> DESC student;
+ERROR:
+ORA-03114: not connected to ORACLE
+Process ID: 5664
+Session ID: 97 Serial number: 252
+
+
+SQL> A048db@2021
+  9* )048db@2021
+SQL>
+SQL>
+SQL> connect A048@db2021
+Enter password:
+Connected.
+SQL> DESC student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                NOT NULL NUMBER(5)
+ STUDENT_NAME                              NOT NULL VARCHAR2(50)
+ GENDER                                             CHAR(1)
+ AGE                                                NUMBER(2)
+ COURSE                                    NOT NULL VARCHAR2(30)
+ EMAIL                                              VARCHAR2(50)
+ MARKS                                              NUMBER(3)
+
+SQL> INSERT INTO student
+  2  VALUES (1, 'Anu', 'F', 20, 'CSE', 'anu@gmail.com', 95);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO student
+  2  VALUES (2, 'Rahul', 'M', 21, 'ECE', 'rahul@gmail.com', 88);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO student
+  2  VALUES (3, 'Priya', 'F', 19, 'IT', 'priya@gmail.com', 91);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO student
+  2  VALUES (4, 'Kiran', 'M', 22, 'MECH', 'kiran@gmail.com', 84);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO student
+  2  VALUES (5, 'Sneha', 'F', 20, 'CIVIL', 'sneha@gmail.com', 97);
+
+1 row created.
+
+SQL> INSERT INTO course
+  2  VALUES (101, 'Anu', 'Computer Science');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO course
+  2  VALUES (102, 'Rahul', 'Electronics');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO course
+  2  VALUES (103, 'Priya', 'Information Technology');
+
+1 row created.
+
+SQL> SELECT *
+  2  FROM student
+  3  WHERE student_name = 'Anu';
+
+STUDENT_ID STUDENT_NAME                                       G        AGE
+---------- -------------------------------------------------- - ----------
+COURSE
+------------------------------
+EMAIL                                                   MARKS
+-------------------------------------------------- ----------
+         1 Anu                                                F         20
+CSE
+anu@gmail.com                                              95
+
+
+SQL> SELECT *
+  2  FROM student
+  3  WHERE student_name LIKE 'A%';
+
+STUDENT_ID STUDENT_NAME                                       G        AGE
+---------- -------------------------------------------------- - ----------
+COURSE
+------------------------------
+EMAIL                                                   MARKS
+-------------------------------------------------- ----------
+         1 Anu                                                F         20
+CSE
+anu@gmail.com                                              95
+
+
+SQL> select from student where student_mail = anu@gamil.com
+  2  ;
+select from student where student_mail = anu@gamil.com
+       *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from student where student_mail = anu@gamil.com;
+select * from student where student_mail = anu@gamil.com
+*
+ERROR at line 1:
+ORA-04054: database link GAMIL.COM does not exist
+
+
+SQL>
