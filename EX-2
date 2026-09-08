@@ -1,0 +1,136 @@
+
+SQL> CREATE TABLE STUDENT1
+  2      (
+  3       STUDENT_ID NUMBER(5) PRIMARY KEY,
+  4       STUDENT_NAME VARCHAR2(30),
+  5       DEPARTMENT VARCHAR2(20),
+  6       AGE NUMBER(2),
+  7       MARKS NUMBER(3)
+  8      );
+
+Table created.
+
+SQL> insert into STUDENT1 values (5,'AIRA','CSE',20,92);
+
+1 row created.
+
+SQL> insert into STUDENT1 values (6,'ARIA','IT',21,78);
+
+1 row created.
+
+SQL> insert into STUDENT1 values (7,'INDU','ECE',21,68);
+
+1 row created.
+
+SQL> SELECT * FROM STUDENT1;
+
+STUDENT_ID STUDENT_NAME                   DEPARTMENT                  AGE
+---------- ------------------------------ -------------------- ----------
+     MARKS
+----------
+         5 AIRA                           CSE                          20
+        92
+
+         6 ARIA                           IT                           21
+        78
+
+         7 INDU                           ECE                          21
+        68
+
+
+SQL> UPDATE STUDENT1
+  2  SET MAERKS = 70
+  3  WHERE STUDENT_ID =7;
+SET MAERKS = 70
+    *
+ERROR at line 2:
+ORA-00904: "MAERKS": invalid identifier
+
+
+SQL> UPDATE STUDENT1
+  2  SET MARKS = 70
+  3  WHERE STUDENT_ID =7;
+
+1 row updated.
+
+SQL> SELECT * FROM STUDENT1 WHERE STUDENT_ID = 7;
+
+STUDENT_ID STUDENT_NAME                   DEPARTMENT                  AGE
+---------- ------------------------------ -------------------- ----------
+     MARKS
+----------
+         7 INDU                           ECE                          21
+        70
+
+
+SQL> DELETE FROM STUDENT1 WHERE DEPARTMENT = 'ECE';
+
+1 row deleted.
+
+SQL> SELECT FROM STUDENT1;
+SELECT FROM STUDENT1
+       *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> SELECT * FROM STUDENT1;
+
+STUDENT_ID STUDENT_NAME                   DEPARTMENT                  AGE
+---------- ------------------------------ -------------------- ----------
+     MARKS
+----------
+         5 AIRA                           CSE                          20
+        92
+
+         6 ARIA                           IT                           21
+        78
+
+
+SQL> ALTER TABLE EMPLOYEE
+  2  ADD EMAIL VARCHAR(40);
+
+Table altered.
+
+SQL> DESC STUDENT1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                NOT NULL NUMBER(5)
+ STUDENT_NAME                                       VARCHAR2(30)
+ DEPARTMENT                                         VARCHAR2(20)
+ AGE                                                NUMBER(2)
+ MARKS                                              NUMBER(3)
+
+SQL> ALTER TABLE STUDENT1
+  2  MODIFY STUDENT_NAME VARCHAR2(50);
+
+Table altered.
+
+SQL> SELECT * FROM STUDENT1 WHERE DEPARTMENT = 'CSE';
+
+STUDENT_ID STUDENT_NAME
+---------- --------------------------------------------------
+DEPARTMENT                  AGE      MARKS
+-------------------- ---------- ----------
+         5 AIRA
+CSE                          20         92
+
+
+SQL> SELECT STUDENT_NAME,AGE FROM EMPLOYEE WHERE AGE > 20;
+SELECT STUDENT_NAME,AGE FROM EMPLOYEE WHERE AGE > 20
+                                            *
+ERROR at line 1:
+ORA-00904: "AGE": invalid identifier
+
+
+SQL> SELECT STUDENT_NAME,AGE FROM STUDENT1 WHERE AGE > 20;
+
+STUDENT_NAME                                              AGE
+-------------------------------------------------- ----------
+ARIA                                                       21
+
+SQL> SELECT STUDENT_NAME,DEPARTMENT FROM STUDENT1 WHERE DEPARTMENT = 'CSE';
+
+STUDENT_NAME                                       DEPARTMENT
+-------------------------------------------------- --------------------
+AIRA                                               CSE
