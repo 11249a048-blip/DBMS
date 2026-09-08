@@ -1,0 +1,94 @@
+
+SQL> CREATE TABLE STUDENT
+  2  (
+  3   STUDENT_ID NUMBER(5) PRIMARY KEY,
+  4   STUDENT_NAME VARCHAR2(30),
+  5   DEPARTMENT VARCHAR2(20),
+  6   AGE NUMBER(2),
+  7   MARKS NUMBER(3)
+  8  );
+
+Table created.
+
+SQL> insert into STUDENT values (1,'ANU','CSE',20,99);
+
+1 row created.
+
+SQL> insert into STUDENT values (1,'ABHI','CSE',40,89);
+insert into STUDENT values (1,'ABHI','CSE',40,89)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (A048.SYS_C0033424) violated
+
+
+SQL> insert into STUDENT values (2,'ABHI','CSE',40,89);
+
+1 row created.
+
+SQL> insert into STUDENT values (3,'ROSHINI','ECE',30,88);
+
+1 row created.
+
+SQL> insert into STUDENT values (4,'BHUMIKHA','IT',22,93);
+
+1 row created.
+
+SQL> SELECT * FROM STUDENT
+  2  ;
+
+STUDENT_ID STUDENT_NAME                   DEPARTMENT                  AGE
+---------- ------------------------------ -------------------- ----------
+     MARKS
+----------
+         1 ANU                            CSE                          20
+        99
+
+         2 ABHI                           CSE                          40
+        89
+
+         3 ROSHINI                        ECE                          30
+        88
+
+
+STUDENT_ID STUDENT_NAME                   DEPARTMENT                  AGE
+---------- ------------------------------ -------------------- ----------
+     MARKS
+----------
+         4 BHUMIKHA                       IT                           22
+        93
+
+
+SQL> ALTER TABLE STUDENT;
+ALTER TABLE STUDENT
+                  *
+ERROR at line 1:
+ORA-02210: no options specified for ALTER TABLE
+
+
+SQL> SELECT STUDENT_NAME,AGE
+  2  FROM STUDENT;
+
+STUDENT_NAME                          AGE
+------------------------------ ----------
+ANU                                    20
+ABHI                                   40
+ROSHINI                                30
+BHUMIKHA                               22
+
+SQL> SELECT * FROM STUDENT WHERE DEPARTMENT = 'IT';
+
+STUDENT_ID STUDENT_NAME                   DEPARTMENT                  AGE
+---------- ------------------------------ -------------------- ----------
+     MARKS
+----------
+         4 BHUMIKHA                       IT                           22
+        93
+
+
+SQL> SELECT STUDENT_NAME,MARKS
+  2  FROM STUDENT WHERE MARKS > 90;
+
+STUDENT_NAME                        MARKS
+------------------------------ ----------
+ANU                                    99
+BHUMIKHA                               93
