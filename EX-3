@@ -1,0 +1,97 @@
+
+SQL> CREATE TABLE STUDENT3
+  2      (
+  3       STUDENT_ID NUMBER(5) PRIMARY KEY,
+  4       STUDENT_NAME VARCHAR2(30),
+  5       DEPARTMENT VARCHAR2(20),
+  6       AGE NUMBER(2),
+  7       MARKS NUMBER(3)
+  8      );
+
+Table created.
+
+SQL> insert into STUDENT3 values (10,'BINDU','ECE',21,68);
+
+1 row created.
+
+SQL> insert into STUDENT3 values (11,'LILY','IT',21,78);
+
+1 row created.
+
+SQL> GRANT SELECT ON STUDENT3 TO LILY;
+GRANT SELECT ON STUDENT3 TO LILY
+                            *
+ERROR at line 1:
+ORA-01917: user or role 'LILY' does not exist
+
+
+SQL> GRANT SELECT ON STUDENT3 TO BINDU;
+GRANT SELECT ON STUDENT3 TO BINDU
+                            *
+ERROR at line 1:
+ORA-01917: user or role 'BINDU' does not exist
+
+
+SQL> GRANT SELECT ON STUDENT3 TO SCOTT;
+
+Grant succeeded.
+
+SQL> GRANT SELECT,INSERT,UPDATE ON STUDENT3 TO SCOTT;
+
+Grant succeeded.
+
+SQL> REVOKE INSERT ON STUDENT3 FROM SCOTT;
+
+Revoke succeeded.
+
+SQL> insert into STUDENT3 values (12,'RIA','IT',21,98);
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> insert into STUDENT3 values (13,'ABHAY','IT',21,98);
+
+1 row created.
+
+SQL> SAVEPOINT SP1;
+
+Savepoint created.
+
+SQL> insert into STUDENT3 values (14,'AAHAN','IT',20,68);
+
+1 row created.
+
+SQL> ROLLBACK TO SP1;
+
+Rollback complete.
+
+SQL> SELECT * FROM STUDENT3;
+
+STUDENT_ID STUDENT_NAME                   DEPARTMENT                  AGE
+---------- ------------------------------ -------------------- ----------
+     MARKS
+----------
+        10 BINDU                          ECE                          21
+        68
+
+        11 LILY                           IT                           21
+        78
+
+        12 RIA                            IT                           21
+        98
+
+
+STUDENT_ID STUDENT_NAME                   DEPARTMENT                  AGE
+---------- ------------------------------ -------------------- ----------
+     MARKS
+----------
+        13 ABHAY                          IT                           21
+        98
+
+
+SQL> COMMIT;
+
+Commit complete.
