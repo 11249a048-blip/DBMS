@@ -1,110 +1,120 @@
-SQL> Create table Student
+SQL> CREATE TABLE STUDENT
   2  (
-  3  student_id number(5) primary key,
-  4  student_name varchar2(30),
-  5  Department varchar2(20),
-  6  marks number(3)
+  3      STUDENT_ID NUMBER(5) PRIMARY KEY,
+  4      STUDENT_NAME VARCHAR2(30),
+  5      DEPARTMENT VARCHAR2(20),
+  6      MARKS NUMBER(3)
   7  );
 
 Table created.
 
-SQL> insert into Student values(101,'Arun','CSE',85);
+SQL> INSERT INTO STUDENT VALUES (101, 'ARUN', 'CSE', 85);
 
 1 row created.
 
-SQL> insert into Student values (102 ,'bala' , 'ece',78);
+SQL> INSERT INTO STUDENT VALUES (102, 'BALA', 'ECE', 78);
 
 1 row created.
 
-SQL> insert into Student values(103 , 'rishitha','IT',92);
+SQL> INSERT INTO STUDENT VALUES (103, 'DIVYA', 'IT', 92);
 
 1 row created.
 
+SQL> INSERT INTO STUDENT VALUES (104, 'KAVI', 'CSE', 88);
 
-SQL> Select count (*) as total_Students from Student;
+1 row created.
+
+SQL> INSERT INTO STUDENT VALUES (105, 'RAVI', 'ECE', 81);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT VALUES (106, 'SURESH', 'IT', 95);
+
+1 row created.
+
+SQL> SELECT COUNT(*) AS TOTAL_STUDENTS FROM STUDENT;
 
 TOTAL_STUDENTS
 --------------
-             3
+             6
 
-SQL> Select sum(marks) as total_marks from Student;
+SQL> SELECT SUM(MARKS) AS TOTAL_MARKS FROM STUDENT;
 
 TOTAL_MARKS
 -----------
-        255
+        519
 
-SQL> Select Avg(marks) as Average_marks from Student;
+SQL> SELECT AVG(MARKS) AS AVERAGE_MARKS FROM STUDENT;
 
 AVERAGE_MARKS
 -------------
-           85
+         86.5
 
-SQL> Select max(marks) as Highest_mark from student;
+SQL> SELECT MAX(MARKS) AS HIGHEST_MARK FROM STUDENT;
 
 HIGHEST_MARK
 ------------
-          92
+          95
 
-SQL> Select min(marks) as lowest_marks from Student;
+SQL> SELECT MIN(MARKS) AS LOWEST_MARK FROM STUDENT;
 
-LOWEST_MARKS
-------------
-          78
+LOWEST_MARK
+-----------
+         78
 
-SQL> Select department, avg(marks) as avg_marks from Student group by department;
+SQL> SELECT DEPARTMENT, AVG(MARKS) AS AVG_MARKS FROM STUDENT GROUP BY DEPARTMENT;
 
 DEPARTMENT            AVG_MARKS
 -------------------- ----------
-IT                           92
-CSE                          85
-ece                          78
+CSE                        86.5
+ECE                        79.5
+IT                         93.5
 
-SQL> Select department , count(*) as total_Students from Student group by department;
+SQL> SELECT DEPARTMENT, COUNT(*) AS TOTAL_STUDENTS FROM STUDENT GROUP BY DEPARTMENT;
 
 DEPARTMENT           TOTAL_STUDENTS
 -------------------- --------------
-IT                                1
-CSE                               1
-ece                               1
+CSE                               2
+ECE                               2
+IT                                2
 
-SQL> Select department , max(marks) as max_marks from Student group by department;
+SQL> SELECT DEPARTMENT, MAX(MARKS) AS MAX_MARKS FROM STUDENT GROUP BY DEPARTMENT;
 
 DEPARTMENT            MAX_MARKS
 -------------------- ----------
-IT                           92
-CSE                          85
-ece                          78
+CSE                          88
+ECE                          81
+IT                           95
 
-SQL> Select department , avg(marks) as avg_marks from Student group by department having avg(marks) > 85;
+SQL> SELECT DEPARTMENT, AVG(MARKS) AS AVG_MARKS FROM STUDENT GROUP BY DEPARTMENT HAVING AVG(MARKS) > 85;
 
 DEPARTMENT            AVG_MARKS
 -------------------- ----------
-IT                           92
+CSE                        86.5
+IT                         93.5
 
-SQL> Select department , count(*) as total_Student from Student group by department having count(*) = 1;
+SQL> SELECT DEPARTMENT, COUNT(*) AS TOTAL_STUDENTS FROM STUDENT GROUP BY DEPARTMENT HAVING COUNT(*) > 1;
 
-DEPARTMENT           TOTAL_STUDENT
--------------------- -------------
-IT                               1
-CSE                              1
-ece                              1
+DEPARTMENT           TOTAL_STUDENTS
+-------------------- --------------
+CSE                               2
+ECE                               2
+IT                                2
 
-SQL> Select department , count(*) as no_of_Students, avg(marks) as avg_marks, max(marks) as hightest_mark from Student group by department having avg(marks) > 80;
+SQL> SELECT DEPARTMENT, COUNT(*) AS NO_OF_STUDENTS, AVG(MARKS) AS AVG_MARKS, MAX(MARKS) AS HIGHEST_MARK FROM STUDENT GROUP BY DEPARTMENT HAVING AVG(MARKS) > 80;
 
-DEPARTMENT           NO_OF_STUDENTS  AVG_MARKS HIGHTEST_MARK
--------------------- -------------- ---------- -------------
-IT                                1         92            92
-CSE                               1         85            85
+DEPARTMENT           NO_OF_STUDENTS  AVG_MARKS HIGHEST_MARK
+-------------------- -------------- ---------- ------------
+CSE                               2       86.5           88
+IT                                2       93.5           95
 
-SQL> Select * from student;
+SQL> SELECT * FROM STUDENT;
 
 STUDENT_ID STUDENT_NAME                   DEPARTMENT                MARKS
 ---------- ------------------------------ -------------------- ----------
-       101 Arun                           CSE                          85
-       102 bala                           ece                          78
-       103 rishitha                       IT                           92
-
-SQL>
-
-
-
+       101 ARUN                           CSE                          85
+       102 BALA                           ECE                          78
+       103 DIVYA                          IT                           92
+       104 KAVI                           CSE                          88
+       105 RAVI                           ECE                          81
+       106 SURESH                         IT                           95
